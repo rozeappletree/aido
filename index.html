@@ -5,6 +5,12 @@
     <meta charset="UTF-8">
     <title>Aido</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="theme-color" content="#F02050">
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.css'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
@@ -298,6 +304,10 @@
                 event.preventDefault();
                 mouse.x = (event.touches[0].clientX / window.innerWidth) * 2 - 1;
                 mouse.y = -(event.touches[0].clientY / window.innerHeight) * 2 + 1;
+                // Request fullscreen on touch
+                if (!document.fullscreenElement) {
+                    document.documentElement.requestFullscreen();
+                }
             }
         };
         function onDocumentTouchMove(event) {
@@ -347,7 +357,7 @@
         }
         //----------------------------------------------------------------- LINES world
 
-        var createCars = function (cScale = 2, cPos = 20, cColor = 0xFFFF00) {
+        var createCars = function (cScale = 2, cPos = 20, cColor = 0xFFFFFF) {
             var cMat = new THREE.MeshToonMaterial({
                 color: cColor,
                 side: THREE.DoubleSide
